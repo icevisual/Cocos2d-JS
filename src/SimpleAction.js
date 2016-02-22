@@ -56,6 +56,27 @@ var SimpleActionLayer = cc.Layer.extend({
         this.addChild(lineY,1);
 
 
+        if('mouse' in cc.sys.capabilities){
+
+            cc.eventManager.addListener({
+                event:cc.EventListener.MOUSE,
+                onMouseDown:function(event){
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    if (event.getButton() === cc.EventMouse.BUTTON_RIGHT) {
+                        trace("onRIghtMouseDown At " + pos.x+" "+pos.y);
+                    }
+                },
+                onMouseUp:function(event){
+
+                },
+                onMouseMove:function(event){
+
+                }
+            });
+        }
+        
+
 
 
         ball.x = size.width/2;
