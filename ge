@@ -1,101 +1,13 @@
 #!/usr/bin/env php
 <?php
 
+include 'tools/Cocos/core.php';
 
-function indent($json)
-{
-    $result = '';
-    $pos = 0;
-    $strLen = strlen($json);
-    $indentStr = '    ';
-    $newLine = "\r\n";
-    $prevChar = '';
-    $outOfQuotes = true;
-    for ($i = 0; $i <= $strLen; $i ++) {
-        // Grab the next character in the string.
-        $char = substr($json, $i, 1);
-        // Are we inside a quoted string?
-        if ($char == '"' && $prevChar != '\\') {
-            $outOfQuotes = ! $outOfQuotes;
-            // If this character is the end of an element,
-            // output a new line and indent the next line.
-        } else 
-            if (($char == '}' || $char == ']') && $outOfQuotes) {
-                $result .= $newLine;
-                $pos --;
-                for ($j = 0; $j < $pos; $j ++) {
-                    $result .= $indentStr;
-                }
-            }
-        // Add the character to the result string.
-        $result .= $char;
-        // If the last character was the beginning of an element,
-        // output a new line and indent the next line.
-        if (($char == ',' || $char == '{' || $char == '[') && $outOfQuotes) {
-            $result .= $newLine;
-            if ($char == '{' || $char == '[') {
-                $pos ++;
-            }
-            for ($j = 0; $j < $pos; $j ++) {
-                 $result .= $indentStr;
-            }
-        }
-        $prevChar = $char;
-    }
-    return str_replace(':', ' : ', $result);
+$runner = new Cocos\Commands\Runner();
+
+try{
+	$runner->runCommands($_SERVER['argv'],__DIR__);
+}catch(\Cocos\Exceptions\CocosException $e){
+	echo $e->getMessage().PHP_EOL;
 }
-
-
-
-$result = call_user_func(function () {
-    
-    $arguments = $_SERVER['argv'];
-    array_shift($arguments);
-    $commands = [
-        'js' => 'js_src_generate'
-    ];
-    $queue = [];
-    foreach ($arguments as $key => $v) {
-        if (isset($commands[$v])) {
-            $queue[] = $commands[$v];
-        } else {
-            return "Command $v Not Found";
-        }
-    }
-    $commandsProcesser = [
-        'js_src_generate' => function () {
-            $content = file_get_contents('project.json');
-            $jsonData = json_decode($content, 1);
-            
-            $basePath = __DIR__ . '/src';
-            $dirName = basename($basePath);
-            $dir = scandir($basePath);
-            $imgExt = [
-                'js'
-            ];
-            $newSrcList = [];
-            foreach ($dir as $key => $file) {
-                $pathinfo = pathinfo($file);
-                if (in_array($pathinfo['extension'], $imgExt)) {
-                    $newSrcList[] = "src/" . $file;
-                }
-            }
-            $jsonData['jsList'] = $newSrcList;
-            $jsonStr = json_encode($jsonData,JSON_UNESCAPED_SLASHES);
-            $jsonStr = indent($jsonStr);
-            file_put_contents('project.json', $jsonStr);
-            return true;
-        }
-    ];
-    foreach ($queue as $key => $value) {
-        call_user_func($commandsProcesser[$value]);
-    }
-    return 'Ok!';
-});
-
-echo $result . PHP_EOL;
-exit();
-
-
-
-
+exit;
