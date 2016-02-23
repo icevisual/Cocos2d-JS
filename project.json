@@ -11,11 +11,11 @@
         "cocos2d"
     ],
     "jsList" : [
-        "src/AccelerometerLayer.js",
-        "src/ScheduleLayer.js",
+        "src/Layers/AccelerometerLayer.js",
+        "src/Layers/ScheduleLayer.js",
+        "src/Layers/ballLayer.js",
         "src/SimpleAction.js",
         "src/app.js",
-        "src/ballLayer.js",
         "src/resource.js"
     ]
 }

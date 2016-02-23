@@ -39,18 +39,20 @@ class CommandJsSrcJson extends Command
         '..'
     ];
 
-    protected function scandir_reverse($dir)
+    protected function scandir_reverse($dir,$prefix = '')
     {
         $files = scandir($dir);
+        $basename = basename($dir);
         $result = [];
         foreach ($files as $key => $file) {
             $pathinfo = pathinfo($file);
-            if (is_dir($file) && in_array($file, $ignoreDir)) {}
-            
-            if (isset($pathinfo['extension']) && in_array($pathinfo['extension'], $this->scanExt)) {
-                $result[] = $file;
+            if (is_dir($dir.DS.$file) && !in_array($file, $this->ignoreDir)) {
+                $result = array_merge($result,$this->scandir_reverse($dir.DS.$file,$prefix.DS.$file));
+            }else if (isset($pathinfo['extension']) && in_array($pathinfo['extension'], $this->scanExt)) {
+                $result[] = $prefix.DS.$file;
             }
         }
+        return $result;
     }
 
     /**
@@ -64,19 +66,17 @@ class CommandJsSrcJson extends Command
     public function run($env)
     {
         $runPath = $env['run_path'];
-        $jsonFile = $runPath . DIRECTORY_SEPARATOR . $this->output;
+        $jsonFile = $runPath . DS . $this->output;
         if (! is_file($jsonFile)) {
             throw new \Cocos\Excetion\CocosExcetion('invalid output file.');
         }
         $content = file_get_contents($jsonFile);
         $jsonData = Common::jsonDecode($content);
-        
-        $basePath = $runPath . DIRECTORY_SEPARATOR . $this->source;
-        $jsList = [];
-        foreach ($this->scandir_reverse($basePath) as $k => $v) {
-            $jsList[] = $this->source . DIRECTORY_SEPARATOR . $v;
+        $basePath = $runPath . DS . $this->source;
+        $jsonData['jsList'] = [];
+        foreach ($this->scandir_reverse($basePath,$this->source) as $k => $v){
+            $jsonData['jsList'] [] = str_replace('\\', '/', $v);
         }
-        $jsonData['jsList'] = $jsList;
         $jsonStr = json_encode($jsonData, JSON_UNESCAPED_SLASHES);
         $jsonStr = Common::jsonIndent($jsonStr);
         file_put_contents($jsonFile, $jsonStr);
