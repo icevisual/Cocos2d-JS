@@ -51,7 +51,19 @@
  }
  *
  */
+
+window.onerror = function(Msg,Url,Num){
+    logTrace(Msg + " at " +Url + " line "+ Num);
+}
+
+var logTrace = function (message){
+    var request = new XMLHttpRequest();
+                        request.open("GET","/test/logs/index.php?message="+message);
+                        request.send();
+}
+
 var trace = function(){
+    // return console.log(arguments);
     cc.log(Array.prototype.join.call(arguments,", "));
 }
 cc.game.onStart = function(){
@@ -72,7 +84,7 @@ cc.game.onStart = function(){
     //load resources
     // trace(g_resources);
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new SimpleActionScene());
+        cc.director.runScene(new AccelerometerScene());
     }, this);
 };
 cc.game.run();

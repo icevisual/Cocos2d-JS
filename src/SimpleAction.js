@@ -22,6 +22,33 @@ var ControlActionLayer = cc.Layer.extend({
         // setTimeout(function(){
         //     ball.resume();
         // },3000);
+        // 
+        if('mouse' in cc.sys.capabilities){
+            cc.eventManager.addListener({
+                event:cc.EventListener.MOUSE,
+                onMouseDown:function(event){
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    if (event.getButton() === cc.EventMouse.BUTTON_RIGHT) {
+                        trace("onRightMouseDown At " + pos.x+" "+pos.y);
+                    }else if (event.getButton() === cc.EventMouse.BUTTON_LEFT){
+                        trace("onLeftMouseDown At " + pos.x + " " + pos.y );
+                    }
+                },
+                onMouseUp:function(event){
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    trace("onMouseUp At " + pos.x + " " + pos.y );
+                },
+                onMouseMove:function(event){
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    trace("onMouseMove At "+ pos.x + " " + pos.y );
+                }
+            },this);
+        }
+
+        return true ;
 
     },
     callback:function(nodeExcutingAction,data){
@@ -38,6 +65,13 @@ var SimpleActionLayer = cc.Layer.extend({
     frame:0,
     bg:null,
     ct:0,
+    isMouseDown : 0,
+    rdColor : function(){
+        return Math.round(255 * Math.random());
+    },
+    gtColor:function(base){
+        return Math.abs(base - this.frame ) % 255;
+    },
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
@@ -56,29 +90,6 @@ var SimpleActionLayer = cc.Layer.extend({
         this.addChild(lineY,1);
 
 
-        if('mouse' in cc.sys.capabilities){
-
-            cc.eventManager.addListener({
-                event:cc.EventListener.MOUSE,
-                onMouseDown:function(event){
-                    var pos = event.getLocation();
-                    var target = event.getCurrentTarget();
-                    if (event.getButton() === cc.EventMouse.BUTTON_RIGHT) {
-                        trace("onRIghtMouseDown At " + pos.x+" "+pos.y);
-                    }
-                },
-                onMouseUp:function(event){
-
-                },
-                onMouseMove:function(event){
-
-                }
-            });
-        }
-        
-
-
-
         ball.x = size.width/2;
         ball.y = size.height/2;
         var action = cc.moveBy(2,0,-(size.height/2 - ball.height/2));
@@ -86,6 +97,119 @@ var SimpleActionLayer = cc.Layer.extend({
         var back = action.clone().reverse();
         back.easing(cc.easeBounceIn());
         ball.runAction(cc.sequence(action,back));
+
+// http://localhost-cocos.com/test/logs/index.php
+        if('keyboard' in cc.sys.capabilities){
+
+            cc.eventManager.addListener({
+                event:cc.EventListener.KEYBOARD,
+                onKeyReleased:function(keyCode,event){
+                    if(keyCode == cc.KEY.back){
+                        trace("key Code " + keyCode);
+                        cc.director.end();
+                    }else if(keyCode == cc.KEY.z){
+                        trace("key Code " + keyCode);
+                    }
+                },
+                onKeyPressed:function(keyCode,event){
+
+                }
+            },this);
+        }
+
+        if('touches' in cc.sys.capabilities){
+
+
+
+            var helloLabel = new cc.LabelTTF("touches valid", "Arial", 38);
+            // position the label on the center of the screen
+            helloLabel.x = size.width / 2;
+            helloLabel.y = size.height / 2 - 200;
+            // add the label as a child to this layer
+            this.addChild(helloLabel, 5);
+
+
+            cc.eventManager.addListener({
+                event:cc.EventListener.TOUCH_ONE_BY_ONE,
+                onTouchBegin:function(touch,event){
+                    var pos = touch.getLocation();
+                    var id = touch.getID();
+                    var target = touch.getCurrentTarget();
+                    logTrace("onTouchBegin at " + pos.x + " " + pos.y);
+                    var winSize = cc.director.getWinSize();
+                    if(pos.x < winSize.width /2 ){
+                        return true;
+                    }
+                    return false;
+                },
+                onTouchMoved:function(touch,event){
+                    var pos = touch.getLocation();
+                    var id = touch.getID();
+                    trace("onTouchMoved at " + pos.x + " " + pos.y);
+                },
+                onTouchEnded:function(touch,event){
+                    var pos = touch.getLocation();
+                    var id = touch.getID();
+                    trace("onTouchEnded at " + pos.x + " " + pos.y);
+                },
+                onTouchCanceled:function(touch,event){
+                    var pos = touch.getLocation();
+                    var id = touch.getID();
+                    trace("onTouchCanceled at " + pos.x + " " + pos.y);
+                }
+            },this);
+        }else{
+
+            var helloLabel = new cc.LabelTTF("touches invalid", "Arial", 38);
+            // position the label on the center of the screen
+            helloLabel.x = size.width / 2;
+            helloLabel.y = size.height / 2 + 200;
+            // add the label as a child to this layer
+            this.addChild(helloLabel, 5);
+
+        }
+
+
+        return true;
+
+
+
+        this.bg = new cc.DrawNode();
+        this.addChild(this.bg);
+        if('mouse' in cc.sys.capabilities){
+            cc.eventManager.addListener({
+                event:cc.EventListener.MOUSE,
+                onMouseDown:function(event){
+                    
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    target.isMouseDown = 1;
+                    if (event.getButton() === cc.EventMouse.BUTTON_RIGHT) {
+                        trace("onRightMouseDown At " + pos.x+" "+pos.y);
+                    }else if (event.getButton() === cc.EventMouse.BUTTON_LEFT){
+                        trace("onLeftMouseDown At " + pos.x + " " + pos.y );
+                    }
+                },
+                onMouseUp:function(event){
+                    
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    target.isMouseDown = 0;
+                    trace("onMouseUp At " + pos.x + " " + pos.y );
+                },
+                onMouseMove:function(event){
+                    var pos = event.getLocation();
+                    var target = event.getCurrentTarget();
+                    // trace("onMouseMove At "+ pos.x + " " + pos.y );
+                    var delta = event.getDelta();
+                    trace("onMouseMove delta " + delta.x + " " + delta.y );
+                    // if(target.isMouseDown){
+                    //    target.bg.drawDot(new cc.Point(pos.x,pos.y),4,cc.color(target.gtColor(255),target.gtColor(0),target.gtColor(155)));
+                    // }
+                }
+            },this);
+        }
+
 
         return true;
 
@@ -148,7 +272,7 @@ var SimpleActionLayer = cc.Layer.extend({
 var SimpleActionScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
-        var layer = new ControlActionLayer();
+        var layer = new SimpleActionLayer();
         this.addChild(layer,2);
         // 
     }

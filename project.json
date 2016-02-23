@@ -1,20 +1,21 @@
 {
-    "project_type": "javascript",
-
+    "project_type" : "javascript",
     "debugMode" : 1,
     "showFPS" : true,
     "frameRate" : 60,
     "noCache" : true,
     "id" : "gameCanvas",
     "renderMode" : 0,
-    "engineDir":"frameworks/cocos2d-html5",
-
-    "modules" : ["cocos2d"],
-
+    "engineDir" : "frameworks/cocos2d-html5",
+    "modules" : [
+        "cocos2d"
+    ],
     "jsList" : [
-        "src/resource.js",
+        "src/AccelerometerLayer.js",
+        "src/ScheduleLayer.js",
+        "src/SimpleAction.js",
         "src/app.js",
         "src/ballLayer.js",
-        "src/SimpleAction.js"
+        "src/resource.js"
     ]
 }
