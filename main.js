@@ -58,7 +58,7 @@ window.onerror = function(Msg,Url,Num){
 
 var logTrace = function (message){
     var request = new XMLHttpRequest();
-                        request.open("GET","/test/logs/index.php?message="+message);
+                        request.open("GET","/test/log.php?message="+message);
                         request.send();
 }
 
@@ -84,7 +84,7 @@ cc.game.onStart = function(){
     //load resources
     // trace(g_resources);
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new AccelerometerScene());
+        cc.director.runScene(new InaccuracyScene());
     }, this);
 };
 cc.game.run();

@@ -5,9 +5,7 @@ include 'tools/Cocos/core.php';
 
 $runner = new Cocos\Commands\Runner();
 
-try{
-	$runner->runCommands($_SERVER['argv'],__DIR__);
-}catch(\Cocos\Exceptions\CocosException $e){
-	echo $e->getMessage().PHP_EOL;
-}
-exit;
+Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
+	$runner->runCommands($_SERVER['argv']);
+});
+

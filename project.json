@@ -12,6 +12,7 @@
     ],
     "jsList" : [
         "src/Layers/AccelerometerLayer.js",
+        "src/Layers/InaccuracyTestLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/ballLayer.js",
         "src/SimpleAction.js",

@@ -2,6 +2,7 @@
 namespace Cocos\Commands;
 
 use Cocos\Utils\Common;
+use Cocos\Exceptions\CocosException;
 
 class CommandJsSrcJson extends Command
 {
@@ -38,7 +39,14 @@ class CommandJsSrcJson extends Command
         '.',
         '..'
     ];
+    
 
+    /**
+     * 递归返回文件夹下的所有文件
+     * @param unknown $dir
+     * @param string $prefix
+     * @return Ambigous <multitype:string , multitype:>
+     */
     protected function scandir_reverse($dir,$prefix = '')
     {
         $files = scandir($dir);
@@ -63,12 +71,12 @@ class CommandJsSrcJson extends Command
      *            输出文件路径
      * @return boolean
      */
-    public function run($env)
+    public function run($arguments)
     {
-        $runPath = $env['run_path'];
+        $runPath = $this->getRunningPath();
         $jsonFile = $runPath . DS . $this->output;
         if (! is_file($jsonFile)) {
-            throw new \Cocos\Excetion\CocosExcetion('invalid output file.');
+            throw new CocosException('invalid output file['.$jsonFile.'].');
         }
         $content = file_get_contents($jsonFile);
         $jsonData = Common::jsonDecode($content);
@@ -82,6 +90,9 @@ class CommandJsSrcJson extends Command
         file_put_contents($jsonFile, $jsonStr);
         return true;
     }
+    
+    
+    
 }
 
 
