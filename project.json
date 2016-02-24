@@ -14,6 +14,7 @@
         "src/Layers/AccelerometerLayer.js",
         "src/Layers/InaccuracyTestLayer.js",
         "src/Layers/MenuItemSpriteLayer.js",
+        "src/Layers/MenuTtemToggleLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/SimpleActionLayer.js",
         "src/Layers/ballLayer.js",

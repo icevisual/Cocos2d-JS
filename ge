@@ -9,3 +9,17 @@ Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
 	$runner->runCommands($_SERVER['argv']);
 });
 
+/**
+ *Command List 
+ *  ge js
+ *      generate project.json
+ *  ge res
+ *      generate src/resource.js
+ *  ge create:command commaneName action0 action1...
+ *      create tools/Cocos/Commands/CommandCommandName.php
+ *  ge create:layer layername
+ *      create src/Layers/LayerNameLayer.js
+ *
+ *
+ * 
+ */
