@@ -57,4 +57,61 @@ EOL;
 EOL;
         file_put_contents($fileName, $str);
     }
+    
+    
+    
+    public function runLayer($arguments){
+        
+        $runningPath =  $this->getRunningPath();
+        
+        $storePath = $runningPath.DS.'src'.DS.'Layers';
+        
+        if(!is_dir($storePath)){
+            throw new CocosException("Store path not found.");
+        }
+        $layerName = array_shift($arguments);
+        $layerName = ucfirst($layerName);
+        $fileName = $storePath.DS.$layerName.'Layer.js';
+        if(is_file($fileName)){
+            throw new CocosException("Layer File Exsits.");
+        }
+        
+        $str =<<<EOL
+
+
+var {$layerName}Layer = cc.Layer.extend({
+    
+    ctor:function(){
+
+        this._super();
+
+        return true;
+    }
+ 
+});
+
+
+var {$layerName}Scene = cc.Scene.extend({
+    onEnter : function (){
+        this._super();
+        var layer = new {$layerName}Layer();
+        this.addChild(layer,1);
+    }
+});
+
+            
+EOL;
+        file_put_contents($fileName, $str);
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
