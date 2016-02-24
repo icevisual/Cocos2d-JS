@@ -98,10 +98,15 @@ var {$layerName}Scene = cc.Scene.extend({
         this.addChild(layer,1);
     }
 });
+        
 
-            
+
+
 EOL;
         file_put_contents($fileName, $str);
+        
+        system("php ge js");
+        
         
     }
     

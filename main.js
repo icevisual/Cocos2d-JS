@@ -84,7 +84,7 @@ cc.game.onStart = function(){
     //load resources
     // trace(g_resources);
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new InaccuracyScene());
+        cc.director.runScene(new MenuItemSpriteScene());
     }, this);
 };
 cc.game.run();
