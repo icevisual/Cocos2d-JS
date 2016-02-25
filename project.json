@@ -11,14 +11,19 @@
         "cocos2d"
     ],
     "jsList" : [
+        "src/Candy/Candy.js",
+        "src/Candy/Constant.js",
+        "src/Candy/GameLayer.js",
+        "src/Candy/GameUI.js",
+        "src/Candy/Storage.js",
         "src/Layers/AccelerometerLayer.js",
+        "src/Layers/HelloWorldLayer.js",
         "src/Layers/InaccuracyTestLayer.js",
         "src/Layers/MenuItemSpriteLayer.js",
         "src/Layers/MenuTtemToggleLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/SimpleActionLayer.js",
         "src/Layers/ballLayer.js",
-        "src/app.js",
         "src/resource.js"
     ]
 }

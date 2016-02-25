@@ -64,7 +64,7 @@ class Runner
             list($cmd,$act) = $this->separateCommand($command);
             $callback = $this->getCommandCallback($cmd,$act);
         } else {
-            throw new \Cocos\Exceptions\CocosException("Command $v Not Found");
+            throw new \Cocos\Exceptions\CocosException("Command $command Not Found");
         }
         call_user_func($callback,$arguments);
         return true;

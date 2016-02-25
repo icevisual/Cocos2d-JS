@@ -44,7 +44,7 @@ var AccelerometerLayer = cc.Layer.extend({
                 }
             },this);
 
-            var sprite = new cc.Sprite(res.item_2);
+            var sprite = new cc.Sprite(res.item_2_png);
             this.addChild(sprite);
             sprite.x = winSize.width / 2;
             sprite.y = winSize.height / 2;
