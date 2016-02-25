@@ -3,7 +3,7 @@ var Constant = {
     CANDY_TYPE_COUNT : 5,
     CANDY_WIDTH : 64,
     MAP_SIZE : 10,
-    FALL_ACCELERATION : 30,
+    FALL_ACCELERATION : 18,
     levels:[
         {limitStep:30,targetScore:500},
         {limitStep:25,targetScore:1000},

@@ -157,7 +157,7 @@ var GameLayer = cc.Layer.extend({
                         if(duration > maxTime){
                             maxTime = duration;
                         }
-                        var move = cc.moveTo(duration,candy.x,candy.y - Constant.CANDY_WIDTH * fallLength).easing(cc.easeIn(2));
+                        var move = cc.moveTo(duration,candy.x,candy.y - Constant.CANDY_WIDTH * fallLength).easing(cc.easeBackIn(2));
                         candy.runAction(move);
                         candy.row -= fallLength;
                         this.map[i][j] = null;
