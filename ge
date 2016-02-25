@@ -17,7 +17,7 @@ Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
  *      generate src/resource.js
  *  ge create:command commaneName action0 action1...
  *      create tools/Cocos/Commands/CommandCommandName.php
- *  ge create:layer layername
+ *  ge create:layer layername layerStoreDir
  *      create src/Layers/LayerNameLayer.js
  *
  *

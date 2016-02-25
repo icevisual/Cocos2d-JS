@@ -18,31 +18,31 @@ var GameUI = cc.Layer.extend({
 
     showSuccess : function(){
 
-        var bg = new cc.LayerColor(cc.color(255,255,255),500,500);
+        var bg = new cc.LayerColor(cc.color(255,0,0),500,500);
         this.addChild(bg,1);
         var size = cc.director.getWinSize();
         bg.x = (size.width - bg.width ) / 2;
-        bg.y = (size.height - ng.height ) / 2;
+        bg.y = (size.height - bg.height ) / 2;
         var stepText = new cc.LabelTTF("Mission " + (this.gameLayer.level + 1) + " Success !","Arial",50);
         stepText.setColor(cc.color(0,0,0));
         stepText.x = 250;
         stepText.y = 250;
-        bg.addChild(stepText);
+        bg.addChild(stepText,2);
 
     },
 
     showFail :function(){
 
-        var bg = new cc.LayerColor(cc.color(255,255,255),500,500);
+        var bg = new cc.LayerColor(cc.color(255,0,0),500,500);
         this.addChild(bg,1);
         var size = cc.director.getWinSize();
         bg.x = (size.width - bg.width ) / 2;
-        bg.y = (size.height - ng.height ) / 2;
-        var stepText = new cc.LabelTTF("Mission Failed! Try again!","Arial",50);
-        stepText.setColor(cc.color(0,0,0));
+        bg.y = (size.height - bg.height ) / 2;
+        var stepText = new cc.LabelTTF("Mission Failed!\n Try again!","Arial",50);
+        stepText.setColor(cc.color(255,255,255));
         stepText.x = 250;
         stepText.y = 250;
-        bg.addChild(stepText);
+        bg.addChild(stepText,2);
 
     },
 
