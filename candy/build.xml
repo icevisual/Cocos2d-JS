@@ -178,14 +178,6 @@
                 <file name="src/Candy/GameLayer.js"/>
                 <file name="src/Candy/GameUI.js"/>
                 <file name="src/Candy/Storage.js"/>
-                <file name="src/Layers/AccelerometerLayer.js"/>
-                <file name="src/Layers/HelloWorldLayer.js"/>
-                <file name="src/Layers/InaccuracyTestLayer.js"/>
-                <file name="src/Layers/MenuItemSpriteLayer.js"/>
-                <file name="src/Layers/MenuTtemToggleLayer.js"/>
-                <file name="src/Layers/ScheduleLayer.js"/>
-                <file name="src/Layers/SimpleActionLayer.js"/>
-                <file name="src/Layers/ballLayer.js"/>
                 <file name="src/resource.js"/>
                 <file name="main.js"/>
 
