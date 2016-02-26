@@ -16,5 +16,6 @@ var Candy = cc.Sprite.extend({
 });
 
 Candy.createRandomType = function(column,row){
+
     return new Candy(parseInt(Math.random()* Constant.CANDY_TYPE_COUNT),column,row);
 }

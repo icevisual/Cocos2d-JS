@@ -1,5 +1,8 @@
         
 var res = {
+	DemoPlayer_Cowboy0_plist : "res/DemoPlayer/Cowboy0.plist",
+	DemoPlayer_Cowboy0_png : "res/DemoPlayer/Cowboy0.png",
+	DemoPlayer_DemoPlayer_ExportJson : "res/DemoPlayer/DemoPlayer.ExportJson",
 	HD_CloseNormal_png : "res/HD/CloseNormal.png",
 	HD_CloseSelected_png : "res/HD/CloseSelected.png",
 	HD_HelloWorld_jpg : "res/HD/HelloWorld.jpg",
@@ -13,6 +16,10 @@ var res = {
 	candy_4_png : "res/candy/4.png",
 	candy_5_png : "res/candy/5.png",
 	candy_bg_jpg : "res/candy/bg.jpg",
+	candy_candy_plist : "res/candy/candy.plist",
+	candy_candy_png : "res/candy/candy.png",
+	grossini_plist : "res/grossini.plist",
+	grossini_png : "res/grossini.png",
 	item_2_png : "res/item_2.png",
 	item_3_png : "res/item_3.png",
 	sounds_sound_bg_mp3 : "res/sounds/sound.bg.mp3",

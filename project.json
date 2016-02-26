@@ -5,10 +5,11 @@
     "frameRate" : 60,
     "noCache" : true,
     "id" : "gameCanvas",
-    "renderMode" : 0,
+    "renderMode" : 1,
     "engineDir" : "frameworks/cocos2d-html5",
     "modules" : [
-        "cocos2d"
+        "cocos2d",
+        "ccpool"
     ],
     "jsList" : [
         "src/Candy/Candy.js",
@@ -17,10 +18,13 @@
         "src/Candy/GameUI.js",
         "src/Candy/Storage.js",
         "src/Layers/AccelerometerLayer.js",
+        "src/Layers/AnimationLayer.js",
+        "src/Layers/BatchNodeLayer.js",
         "src/Layers/HelloWorldLayer.js",
         "src/Layers/InaccuracyTestLayer.js",
         "src/Layers/MenuItemSpriteLayer.js",
         "src/Layers/MenuTtemToggleLayer.js",
+        "src/Layers/PoolLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/SimpleActionLayer.js",
         "src/Layers/ballLayer.js",

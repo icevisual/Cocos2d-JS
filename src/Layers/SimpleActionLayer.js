@@ -131,7 +131,7 @@ var SimpleActionLayer = cc.Layer.extend({
 
             cc.eventManager.addListener({
                 event:cc.EventListener.TOUCH_ONE_BY_ONE,
-                onTouchBegin:function(touch,event){
+                onTouchBegan:function(touch,event){
                     var pos = touch.getLocation();
                     var id = touch.getID();
                     var target = touch.getCurrentTarget();

@@ -19,7 +19,6 @@ var GameLayer = cc.Layer.extend({
         this.addChild(bg);
         bg.x = size.width / 2;
         bg.y = size.height / 2;
-
         var clippingPanel = new cc.ClippingNode();
         this.addChild(clippingPanel);
         this.mapPanel = new cc.Layer();
@@ -67,13 +66,11 @@ var GameLayer = cc.Layer.extend({
                 event:cc.EventListener.TOUCH_ONE_BY_ONE,
                 onTouchBegan:this._onTouchBegan.bind(this)
             },this.mapPanel);
-            logTrace("Touches Enabled");
         }else{
             cc.eventManager.addListener({
                 event:cc.EventListener.MOUSE,
                 onMouseDown:this._onMouseDown.bind(this)
             },this.mapPanel);
-            logTrace("Touches Disabled");
         }
     },
     _onTouchBegan:function(touch,event){
