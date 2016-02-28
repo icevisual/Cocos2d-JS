@@ -2,6 +2,7 @@
 namespace Cocos\Commands;
 
 use Cocos\Utils\Common;
+use Cocos\Utils\JsonFile;
 use Cocos\Exceptions\CocosException;
 
 class CommandJsSrcJson extends Command
@@ -74,20 +75,15 @@ class CommandJsSrcJson extends Command
     public function run($arguments)
     {
         $runPath = $this->getRunningPath();
-        $jsonFile = $runPath . DS . $this->output;
-        if (! is_file($jsonFile)) {
-            throw new CocosException('invalid output file['.$jsonFile.'].');
-        }
-        $content = file_get_contents($jsonFile);
-        $jsonData = Common::jsonDecode($content);
+        $jsonFilePath = $runPath . DS . $this->output;
+        $jsonFile = new JsonFile($jsonFilePath);
+
         $basePath = $runPath . DS . $this->source;
-        $jsonData['jsList'] = [];
+        $jsList = [];
         foreach ($this->scandir_reverse($basePath,$this->source) as $k => $v){
-            $jsonData['jsList'] [] = str_replace('\\', '/', $v);
+            $jsList [] = str_replace('\\', '/', $v);
         }
-        $jsonStr = json_encode($jsonData, JSON_UNESCAPED_SLASHES);
-        $jsonStr = Common::jsonIndent($jsonStr);
-        file_put_contents($jsonFile, $jsonStr);
+        $jsonFile->updateByKey('jsList',$jsList);
         return true;
     }
     

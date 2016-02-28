@@ -66,7 +66,52 @@ class Runner
         } else {
             throw new \Cocos\Exceptions\CocosException("Command $command Not Found");
         }
+        $arguments = $this->parseArguments($arguments);
+        $callback[0]->setArguments($arguments);
         call_user_func($callback,$arguments);
         return true;
     }
+
+
+    public function parseArguments($inputs){
+        $arguments = [];
+        for($i = 0 ; $i < count($inputs) ; $i ++){
+            $value = $inputs[$i];
+            if($value{0} == '-' ){
+                if(isset($value[1])){
+                    $key = ltrim($value,'-');
+                    if($value{1} == '-'){
+                        if(strpos($key, '=') === false){
+                            $arguments[$key] = true;
+                        }else{
+                            $segments = explode('=', $key,2);
+                            $arguments[$segments[0]] = $segments[1];
+                        }
+                    }else{
+                        if(isset($inputs[$i + 1])){
+                            $arguments[$key] = $inputs[$i + 1];
+                            $i ++;
+                        }else{
+                            $arguments[$key] = '';
+                        }
+                    }
+                }else{
+                    throw new CocosException("Argument Syntax Error", 1);
+                }
+            }else{
+                if(strpos($value, '=') === false){
+                    $arguments[] = $value;
+                }else{
+                    $segments = explode('=', $value,2);
+                    $arguments[$segments[0]] = $segments[1];
+                }
+            }
+        }
+        return $arguments;
+        // -u root
+        // --default-set
+        // --default=12
+        // def=ddd
+    }
+
 }
