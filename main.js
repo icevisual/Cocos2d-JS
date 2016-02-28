@@ -58,7 +58,7 @@ window.onerror = function(Msg,Url,Num){
 
 var logTrace = function (message){
     var request = new XMLHttpRequest();
-                        request.open("GET","/test/log.php?message="+message);
+                        request.open("GET",window.location.pathname+"log.php?message="+message);
                         request.send();
 }
 
