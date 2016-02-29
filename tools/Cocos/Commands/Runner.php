@@ -7,6 +7,7 @@ class Runner
     protected $commands = [
         'js' => 'JsSrcJson',
         'res' => 'Resource',
+        'fs' => 'First',
     ];
     
     /**

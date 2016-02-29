@@ -58,8 +58,12 @@ window.onerror = function(Msg,Url,Num){
 
 var logTrace = function (message){
     var request = new XMLHttpRequest();
-                        request.open("GET",window.location.pathname+"log.php?message="+message);
-                        request.send();
+    request.open("GET",window.location.pathname+"log.php?message="+message);
+    request.send();
+}
+
+var reload = function(){
+    window.location.reload();
 }
 
 var trace = function(){
@@ -75,8 +79,9 @@ cc.game.onStart = function(){
     // Adjust viewport meta
     cc.view.adjustViewPort(true);
     //width="720" height="1280"
+    ////1024, 768 720, 1280
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(720, 960, cc.ResolutionPolicy.SHOW_ALL);
+    cc.view.setDesignResolutionSize(320, 320, cc.ResolutionPolicy.SHOW_ALL);
     // Instead of set design resolution, you can also set the real pixel resolution size
     // Uncomment the following line and delete the previous line.
     // cc.view.setRealPixelResolution(960, 640, cc.ResolutionPolicy.SHOW_ALL);
@@ -85,7 +90,7 @@ cc.game.onStart = function(){
     //load resources
     // trace(g_resources);
 
-    var loadScene = cc.game.config.firstScene || 'ParallaxScene';
+    var loadScene = cc.game.config.firstScene || 'cc.Scene';
 
     cc.LoaderScene.preload(g_resources, function () {
         cc.director.runScene(eval("new "+loadScene+"()"));

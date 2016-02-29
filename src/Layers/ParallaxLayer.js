@@ -20,7 +20,6 @@ var ParallaxLayer = cc.Layer.extend({
         var action = cc.moveBy(1,-200,0);
         var action1 = cc.sequence(action,action.clone().reverse());
         bg.runAction(action1.repeatForever());
-
         this.addChild(bg);
         return true;
     }

@@ -10,7 +10,7 @@ Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
 });
 
 /**
- *Command List 
+ * Command List 
  *  ge js
  *      generate project.json
  *  ge res
@@ -22,7 +22,8 @@ Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
  * 		--first
  *      create src/Layers/LayerNameLayer.js
  *	ge first firstScene
- *
+ *  ge fs -s short   ( short for first )
  *
  * 
+ *
  */

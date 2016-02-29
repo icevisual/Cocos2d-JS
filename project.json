@@ -7,7 +7,7 @@
     "id" : "gameCanvas",
     "renderMode" : 1,
     "engineDir" : "frameworks/cocos2d-html5",
-    "firstScene" : "ParallaxScene",
+    "firstScene" : "UnlimitedTileScene",
     "modules" : [
         "cocos2d",
         "ccpool"
@@ -29,6 +29,9 @@
         "src/Layers/PoolLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/SimpleActionLayer.js",
+        "src/Layers/TiledMapLayer.js",
+        "src/Layers/UnlimitedParallaxLayer.js",
+        "src/Layers/UnlimitedTileLayer.js",
         "src/Layers/ballLayer.js",
         "src/resource.js"
     ]
