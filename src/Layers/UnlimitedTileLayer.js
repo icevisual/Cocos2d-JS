@@ -46,23 +46,13 @@ var UnlimitedTileLayer = cc.Layer.extend({
             onMouseMove:this.move.bind(this)
         },this);
 
-        // cc.eventManager.addListener({
-        //     event:cc.EventListener.KEYBOARD,
-        //     onKey
-        // });
-
         cc.eventManager.addListener({
             event:cc.EventListener.KEYBOARD,
             onKeyReleased:function(keyCode,event){
                 // this.keyMove(keyCode,event);
-                //39 right
-                //38 up
-                //37 left
-                //40 down
                 this.unschedule();
             }.bind(this),
             onKeyPressed:function(keyCode,event){
-                
                 // this.schedule(function(){
                     this.keyMove(keyCode,event);
                 // }.bind(this),0.5)
@@ -100,7 +90,6 @@ var UnlimitedTileLayer = cc.Layer.extend({
                 tile.x = i * this.tileSize + this.tileSize / 2;
                 tile.y = -(this.mapBottom ) * this.tileSize + this.tileSize / 2;
                 this.map.addChild(tile);
-
 
                 var label = new cc.LabelTTF(i+ "" +this.mapBottom,"Arial",4);
                 label.x = tile.width / 2 ;
@@ -180,29 +169,11 @@ var UnlimitedTileLayer = cc.Layer.extend({
     },
     move:function(event){
         if(event.getButton() == cc.EventMouse.BUTTON_LEFT){
-
             this.map.x += event.getDeltaX();
             this.map.y += event.getDeltaY();
-
-
-            // // this.moveLeft(event,event.getDeltaX(),event.getDeltaY());
-            // this.moveRight(event,event.getDeltaX(),event.getDeltaY());
-
-            // if(this.map.x/this.tileSize + this.mapRight - this.screenSize < 1){
-            //     for(var i = - this.mapBottom ; i < this.mapTop ; i ++){
-            //         var tile = new cc.Sprite("res/tile0.png");
-            //         tile.x = this.mapRight * this.tileSize + this.tileSize / 2;
-            //         tile.y = i * this.tileSize + this.tileSize / 2;
-            //         this.map.addChild(tile);
-            //     }
-            //     this.mapRight ++;
-            // }
-
         }
     }
- 
 });
-
 
 var UnlimitedTileScene = cc.Scene.extend({
     onEnter : function (){
@@ -211,5 +182,4 @@ var UnlimitedTileScene = cc.Scene.extend({
         this.addChild(layer,1);
     }
 });
-        
 
