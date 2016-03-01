@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-include 'tools/Cocos/core.php';
+include '../Cocos-tools/Cocos/core.php';
 
 $runner = new Cocos\Commands\Runner();
 
