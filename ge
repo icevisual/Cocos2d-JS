@@ -5,9 +5,7 @@ include 'php/Cocos/core.php';
 
 $runner = new Cocos\Commands\Runner();
 
-Cocos\Exceptions\ExceptionHandle::handle(function() use ($runner){
-	$runner->runCommands($_SERVER['argv']);
-});
+$runner->runCommands($_SERVER['argv']);
 
 /**
  * Command List 

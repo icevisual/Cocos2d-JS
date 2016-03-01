@@ -16,3 +16,4 @@ function edump($expression){
 
 Cocos\Autoloader::register();
 
+Cocos\Exceptions\ExceptionHandle::register();

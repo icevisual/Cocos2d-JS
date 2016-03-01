@@ -16,11 +16,7 @@ class CommandFirst extends Command
     	}else{
     	    $firstScene = ucfirst($firstScene).'Scene';
     	}
-
-        $projectJsonFile =  $runningPath.DS.'project.json';
-        $jsonfile = new JsonFile($projectJsonFile);
-        $jsonfile->updateByKey('firstScene',$firstScene);
-        return true;
+        return $this->updateProjectJson('firstScene',$firstScene);
     }
                     
 }

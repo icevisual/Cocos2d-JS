@@ -2,6 +2,7 @@
 namespace Cocos\Commands;
 
 use Cocos\Utils\Common;
+use Cocos\Utils\JsonFile;
 use Cocos\Exceptions\CocosException;
 
 abstract  class Command {
@@ -41,11 +42,46 @@ abstract  class Command {
      * Get Ge Running Path
      */
     public function getRunningPath(){
-        
-        $backtrace = debug_backtrace(false,4);
-        
-        return dirname($backtrace[3]['file']);
+        if (version_compare(PHP_VERSION, '5.3.6', '>=')) {
+            $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        } else {
+            $backtrace = debug_backtrace(false);
+        }
+        $end = end($backtrace);
+        return dirname($end['file']);
     }
+
+    public function updateProjectJson($key,$value = ''){
+        $runningPath = $this->getRunningPath();
+        $projectJsonFile =  $runningPath.DS.'project.json';
+        $jsonfile = new JsonFile($projectJsonFile);
+        $data = $key;
+        if(!is_array($key)){
+            $data = [$key => $value];
+        }
+        foreach ($data as $k => $v){
+            if(!is_numeric($k)){
+                $jsonfile->update($k,$v);
+            }
+        }
+        return $jsonfile->save();
+    }
+    
+    
+    public function getProjectSetting($key){
+        static $_cache = [];
+        
+        if(empty($_cache)){
+            
+        }
+        
+        
+    }
+    
     
 
 }
+
+
+
+
