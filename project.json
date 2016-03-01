@@ -12,6 +12,8 @@
         "cocos2d",
         "ccpool"
     ],
+    "resourceFolder" : "res",
+    "jssrcFolder" : "src",
     "jsList" : [
         "src/Candy/Candy.js",
         "src/Candy/Constant.js",
