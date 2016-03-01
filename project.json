@@ -7,7 +7,7 @@
     "id" : "gameCanvas",
     "renderMode" : 1,
     "engineDir" : "frameworks/cocos2d-html5",
-    "firstScene" : "UnlimitedTileScene",
+    "firstScene" : "ParticleScene",
     "modules" : [
         "cocos2d",
         "ccpool"
@@ -20,12 +20,14 @@
         "src/Candy/Storage.js",
         "src/Layers/AccelerometerLayer.js",
         "src/Layers/AnimationLayer.js",
+        "src/Layers/BMFontLayer.js",
         "src/Layers/BatchNodeLayer.js",
         "src/Layers/HelloWorldLayer.js",
         "src/Layers/InaccuracyTestLayer.js",
         "src/Layers/MenuItemSpriteLayer.js",
         "src/Layers/MenuTtemToggleLayer.js",
         "src/Layers/ParallaxLayer.js",
+        "src/Layers/ParticleLayer.js",
         "src/Layers/PoolLayer.js",
         "src/Layers/ScheduleLayer.js",
         "src/Layers/SimpleActionLayer.js",

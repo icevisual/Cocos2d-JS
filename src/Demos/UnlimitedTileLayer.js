@@ -134,11 +134,11 @@ var UnlimitedTileLayer = cc.Layer.extend({
                 this.map.addChild(tile);
 
 
-                var label = new cc.LabelTTF(this.mapRight+ "" +i,"Arial",4);
-                label.x = tile.width / 2 ;
-                label.y = tile.height / 2 ;
-                label.setColor(cc.color(255,255,255));
-                tile.addChild(label,5);
+                // var label = new cc.LabelTTF(this.mapRight+ "" +i,"Arial",4);
+                // label.x = tile.width / 2 ;
+                // label.y = tile.height / 2 ;
+                // label.setColor(cc.color(255,255,255));
+                // tile.addChild(label,5);
 
 
             }

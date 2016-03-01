@@ -27,7 +27,7 @@ class CommandResource extends Command
      * @var unknown
      */
     protected $scanExt = [
-        'png','mp3','jpg','plist','ExportJson','tmx'
+        'png','mp3','jpg','plist','ExportJson','tmx','fnt'
     ];
 
     /**
