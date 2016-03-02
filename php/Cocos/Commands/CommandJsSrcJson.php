@@ -47,29 +47,6 @@ class CommandJsSrcJson extends Command
         $this->source = $this->getProjectSetting('jssrcFolder','src');
     }
     
-
-    /**
-     * 递归返回文件夹下的所有文件
-     * @param unknown $dir
-     * @param string $prefix
-     * @return Ambigous <multitype:string , multitype:>
-     */
-    protected function scandir_reverse($dir,$prefix = '')
-    {
-        $files = scandir($dir);
-        $basename = basename($dir);
-        $result = [];
-        foreach ($files as $key => $file) {
-            $pathinfo = pathinfo($file);
-            if (is_dir($dir.DS.$file) && !in_array($file, $this->ignoreDir)) {
-                $result = array_merge($result,$this->scandir_reverse($dir.DS.$file,$prefix.DS.$file));
-            }else if (isset($pathinfo['extension']) && in_array($pathinfo['extension'], $this->scanExt)) {
-                $result[] = $prefix.DS.$file;
-            }
-        }
-        return $result;
-    }
-
     /**
      *
      * @param unknown $source
@@ -88,8 +65,6 @@ class CommandJsSrcJson extends Command
         }
         return $this->updateProjectJson('jsList',$jsList);
     }
-    
-    
     
 }
 
