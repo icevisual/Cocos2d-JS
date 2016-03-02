@@ -8,7 +8,7 @@ use Cocos\Exceptions\CocosException;
 abstract  class Command {
 
 	protected $arguments = [];
-
+	
 	public function setArguments($arguments){
 		$this->arguments = $arguments;		
 	}
@@ -67,15 +67,14 @@ abstract  class Command {
         return $jsonfile->save();
     }
     
-    
-    public function getProjectSetting($key){
-        static $_cache = [];
-        
+    public function getProjectSetting($key,$default = null){
+        static $_jsonfile = [];
         if(empty($_cache)){
-            
+            $runningPath = $this->getRunningPath();
+            $projectJsonFile =  $runningPath.DS.'project.json';
+            $_jsonfile = new JsonFile($projectJsonFile);
         }
-        
-        
+        return $_jsonfile->getDataOrDefault($key,$default);
     }
     
     

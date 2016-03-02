@@ -14,6 +14,10 @@ class CommandResource extends Command
      */
     protected $source = 'res';
 
+    
+    
+    protected $resourceFileName = 'resource.js';
+    
     /**
      * output file name
      * 
@@ -39,6 +43,14 @@ class CommandResource extends Command
         '.',
         '..'
     ];
+    
+    
+    
+    public function __construct(){
+        $this->getProjectSetting('resourceFolder');
+        $this->output = $this->getProjectSetting('jssrcFolder','src').DS.$this->resourceFileName;
+        $this->source = $this->getProjectSetting('resourceFolder','res');
+    }
     
 
     /**
@@ -77,6 +89,9 @@ class CommandResource extends Command
         $outputFile = $runPath . DS . $this->output;
         $basePath = $runPath . DS . $this->source;
         
+        if(!is_dir($basePath)){
+            throw new CocosException("Can Not Find Path [{$basePath}]");
+        }
 
         $res = [];
         foreach ($this->scandir_reverse($basePath,$this->source) as $k => $v){

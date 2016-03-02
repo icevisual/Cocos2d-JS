@@ -41,6 +41,12 @@ class CommandJsSrcJson extends Command
         '..'
     ];
     
+    
+    public function __construct(){
+        
+        $this->source = $this->getProjectSetting('jssrcFolder','src');
+    }
+    
 
     /**
      * 递归返回文件夹下的所有文件
@@ -75,16 +81,12 @@ class CommandJsSrcJson extends Command
     public function run($arguments)
     {
         $runPath = $this->getRunningPath();
-        $jsonFilePath = $runPath . DS . $this->output;
-        $jsonFile = new JsonFile($jsonFilePath);
-
         $basePath = $runPath . DS . $this->source;
         $jsList = [];
         foreach ($this->scandir_reverse($basePath,$this->source) as $k => $v){
             $jsList [] = str_replace('\\', '/', $v);
         }
-        $jsonFile->updateByKey('jsList',$jsList);
-        return true;
+        return $this->updateProjectJson('jsList',$jsList);
     }
     
     
