@@ -34,5 +34,20 @@ class CommandSet extends Command
         $dirname = $this->getArgvOrExp(0);
         return $this->updateProjectJson('jssrcFolder',$dirname);
     }
+
+
+    public function runWidth($arguments)
+    {
+        $dirname = $this->getArgvOrExp(0);
+        return $this->updateProjectJson('width',$dirname);
+    }
+
+    public function runHeight($arguments)
+    {
+        $dirname = $this->getArgvOrExp(0);
+        return $this->updateProjectJson('height',$dirname);
+    }
+
+
                     
 }

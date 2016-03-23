@@ -21,7 +21,9 @@ $runner->runCommands($_SERVER['argv']);
  *      create src/Layers/LayerNameLayer.js
  *	ge first firstScene
  *  ge fs -s short   ( short for first )
- *
- * 
+ *  
+ *  ge set:first -s short
+ *  ge set:jssrc src
+ *  ge set:resource res
  *
  */

@@ -80,6 +80,10 @@ cc.game.onStart = function(){
     cc.view.adjustViewPort(true);
     //width="720" height="1280"
     ////1024, 768 720, 1280
+    ///
+    var width = cc.game.config.width || '720';
+    var height = cc.game.config.height || '1280';
+
     // Setup the resolution policy and design resolution size
     cc.view.setDesignResolutionSize(420, 420, cc.ResolutionPolicy.SHOW_ALL);
     // Instead of set design resolution, you can also set the real pixel resolution size

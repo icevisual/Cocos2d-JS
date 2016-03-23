@@ -7,11 +7,13 @@
     "id" : "gameCanvas",
     "renderMode" : 1,
     "engineDir" : "frameworks/cocos2d-html5",
-    "firstScene" : "helloWorld",
+    "firstScene" : "GameScene",
     "modules" : [
         "cocos2d",
         "ccpool"
     ],
+    "width" : "1000",
+    "height" : "420",
     "resourceFolder" : "res",
     "jssrcFolder" : "src",
     "jsList" : [
