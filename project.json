@@ -12,8 +12,8 @@
         "cocos2d",
         "ccpool"
     ],
-    "width" : "1000",
-    "height" : "420",
+    "width" : "720",
+    "height" : "1280",
     "resourceFolder" : "res",
     "jssrcFolder" : "src",
     "jsList" : [

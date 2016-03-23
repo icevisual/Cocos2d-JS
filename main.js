@@ -85,7 +85,7 @@ cc.game.onStart = function(){
     var height = cc.game.config.height || '1280';
 
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(420, 420, cc.ResolutionPolicy.SHOW_ALL);
+    cc.view.setDesignResolutionSize(width, height, cc.ResolutionPolicy.SHOW_ALL);
     // Instead of set design resolution, you can also set the real pixel resolution size
     // Uncomment the following line and delete the previous line.
     // cc.view.setRealPixelResolution(960, 640, cc.ResolutionPolicy.SHOW_ALL);

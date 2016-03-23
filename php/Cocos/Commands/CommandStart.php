@@ -13,7 +13,7 @@ class CommandStart extends Command
         system('php ge res');
 //         system('php ge set...');
         // TODO : running handle
-        system('start chrome www.baidu.com');
+        system('start chrome localhost-cocos.com/test/');
     }
                     
 }
